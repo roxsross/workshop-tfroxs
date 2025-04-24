@@ -20,62 +20,150 @@
 
 ---
 
+# 🌱 **Primer Set de Desafíos Prácticos con Terraform**
 
-¡Bienvenidas y bienvenidos al primer set de desafíos prácticos con Terraform!  
-Este conjunto de actividades está diseñado para introducirte al mundo de la **infraestructura como código (IaC)** de una manera simple, concreta y con resultados visibles desde el primer día.
-
----
-
-## 🎯 ¿Qué vas a lograr?
-
-- Comprender cómo usar Terraform para automatizar tareas comunes de infraestructura.
-- Desplegar aplicaciones en contenedores usando Docker.
-- Simular servicios en la nube como **S3** y **DynamoDB** sin necesidad de usar AWS real (¡gracias LocalStack!).
-- Adoptar buenas prácticas de estructura de archivos y modularización de código.
+Este conjunto de actividades está diseñado para introducirte al mundo de la **Infraestructura como Código (IaC)** de una manera práctica, simple y con resultados visibles desde el primer día. ¡Aquí comienza tu camino como DevOps!
 
 ---
 
-## 💡 Motivación
+## 🎯 **¿Qué vas a lograr?**
 
-Terraform es una herramienta poderosa que te permite declarar tu infraestructura como código. Pero más allá de eso, es una forma de pensar, organizar y escalar soluciones. Estos desafíos te ayudarán a desarrollar confianza y fluidez escribiendo infraestructura como si fuera código de aplicación.
-
-Vamos paso a paso, pero con impacto real desde el primer commit. ¡Estás a punto de crear, desplegar y automatizar como una o un DevOps de verdad!
-
----
-
-# Desafíos Terraform Nivel 100
-
-Este repositorio contiene tres desafíos prácticos de nivel inicial para aprender Terraform con Docker, LocalStack y AWS DynamoDB.
-
-## Docker Terraform Helloworld
-Ruta: `./terraform-labs/docker-terraform-helloworld`
-
-Archivos incluidos:
-- `main.tf`
-- `variables.tf`
-- `outputs.tf`
+- **Dominar Terraform** para automatizar tareas comunes de infraestructura en la nube.
+- **Desplegar aplicaciones en contenedores** utilizando Docker y Terraform.
+- **Simular servicios de AWS** como **S3** y **DynamoDB** de manera local con **LocalStack**.
+- **Adoptar buenas prácticas** de estructura de archivos, modularización y reutilización de código.
 
 ---
 
-## Localstack S3 Ecommerce
-Ruta: `./terraform-labs/localstack-s3-ecommerce`
+## 💡 **Motivación**
 
-Archivos incluidos:
-- `provider.tf`
-- `main.tf`
-- `variables.tf`
-- `outputs.tf`
+Terraform no es solo una herramienta, es una **mentalidad de organización y escalabilidad**. Con este set de desafíos, aprenderás a escribir y gestionar infraestructura como si fuera código de aplicación. No solo verás resultados desde el primer commit, sino que también te prepararás para asumir roles clave en proyectos DevOps. ¡Comencemos a crear y automatizar como verdaderos DevOps!
 
 ---
 
-## Aws Dynamodb Items
-Ruta: `./terraform-labs/aws-dynamodb-items`
+# 🛠 **Desafíos Terraform Nivel 100**
 
-Archivos incluidos:
-- `provider.tf`
-- `main.tf`
-- `variables.tf`
-- `outputs.tf`
+A continuación, encontrarás tres desafíos prácticos que te ayudarán a iniciarte en el mundo de Terraform utilizando Docker, LocalStack y AWS DynamoDB.
+
+---
+
+## 🚀 **Docker Terraform Helloworld**
+**Ruta**: `./terraform-labs/docker-terraform-helloworld`
+
+### **Objetivo**:  
+Automatizar la construcción y ejecución de un contenedor Docker con una aplicación Node.js real utilizando Terraform.
+
+### **Stack**:  
+Terraform + Docker
+
+**Repositorio base**: [helloworld-demo-node](https://github.com/dockersamples/helloworld-demo-node)
+
+### **Pasos**:
+1. Clonar el repositorio `helloworld-demo-node`.
+2. Usar el proveedor `kreuzwerker/docker` en Terraform.
+3. Crear un recurso `docker_image` desde el Dockerfile clonado.
+4. Crear un recurso `docker_container` que exponga el puerto 80 al 8080.
+5. Definir variables para la imagen, el contenedor y los puertos.
+6. Mostrar los outputs: URL del contenedor y estado de ejecución.
+
+### **Estructura sugerida**:
+```bash
+docker-terraform-helloworld/
+├── main.tf
+├── variables.tf
+├── outputs.tf
+└── helloworld-demo-node/   # Clonado desde GitHub
+```
+
+### **Validación**:
+Accede a [http://localhost:8080](http://localhost:8080) y verifica que se muestre:
+```
+Hello from Docker!
+```
+
+---
+
+## 🏬 **Localstack S3 Ecommerce**
+**Ruta**: `./terraform-labs/localstack-s3-ecommerce`
+
+### **Objetivo**:  
+Simular el hosting de una página web estática de e-commerce en **S3** utilizando **LocalStack** y **Terraform**.
+
+### **Stack**:  
+Terraform + LocalStack + S3
+
+**Plantilla base**: [Start Bootstrap E-commerce Template](https://startbootstrap.com/templates/ecommerce)
+
+### **Pasos**:
+1. Descargar la plantilla de e-commerce y colocarla en `web/`.
+2. Configurar el proveedor de AWS apuntando a **LocalStack** (`localhost:4566`).
+3. Crear un bucket de S3 con configuración de sitio web.
+4. Subir los archivos HTML/CSS/JS utilizando `aws_s3_bucket_object` y `for_each`.
+5. Usar `mime_types` en `variables.tf` para especificar los tipos de archivo.
+6. Mostrar la URL del sitio web con el output correspondiente.
+
+### **Estructura sugerida**:
+```bash
+localstack-s3-ecommerce/
+├── main.tf
+├── provider.tf
+├── variables.tf
+├── outputs.tf
+└── web/
+    ├── index.html
+    ├── css/
+    ├── js/
+    └── ...otros assets
+```
+
+### **Validación**:
+Abre en tu navegador:
+```
+http://localhost:4566/ecommerce-site/index.html
+```
+
+---
+
+## 📝 **AWS DynamoDB Items**
+**Ruta**: `./terraform-labs/aws-dynamodb-items`
+
+### **Objetivo**:  
+Crear una tabla en **DynamoDB** y precargarla con datos (ítems) utilizando **Terraform**.
+
+### **Stack**:  
+Terraform + AWS DynamoDB
+
+### **Pasos**:
+1. Configurar el proveedor de AWS (puedes usar claves o un perfil).
+2. Crear una tabla `aws_dynamodb_table` con una **hash key** `id` y modo **PAY_PER_REQUEST**.
+3. Declarar los ítems como un `jsonencode()` en un local variable.
+4. Crear los ítems utilizando `aws_dynamodb_table_item` y `for_each`.
+5. Mostrar los outputs: nombre de la tabla y su ARN.
+
+### **Estructura sugerida**:
+```bash
+aws-dynamodb-items/
+├── main.tf
+├── provider.tf
+├── variables.tf
+├── outputs.tf
+```
+
+### **Validación**:
+Entra en la consola de AWS y ve a:
+```
+Consola > DynamoDB > Items
+```
+
+Deberías ver algo como esto:
+```json
+{ "id": "001", "name": "Ada", "score": 95 }
+{ "id": "002", "name": "Linus", "score": 89 }
+```
+
+---
+
+¡Disfruta de estos desafíos y empieza a crear tu infraestructura como código con Terraform!
 
 
 
