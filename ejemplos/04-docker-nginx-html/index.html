@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo Terraform by Roxs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #00f260, #0575e6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #f0f0f0;
+        }
+        
+        .terraform-logo {
+            width: 100px;
+            margin-bottom: 1rem;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #00f260, #0575e6);
+        }
+        
+        .terraform-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .author {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-style: italic;
+            font-size: 1rem;
+            color: #f0f0f0;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1rem; }
+            .container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <svg class="terraform-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="#ffffff">
+            <path d="M36.4,15.5v15.1L23.2,24V8.9L36.4,15.5z M38.8,33.2V18.1l13.2,6.6v15.1L38.8,33.2z M21.2,40V24.9l13.2,6.6v15.1 L21.2,40z M38.8,18.1L25.6,11.5l13.2-6.6l13.2,6.6L38.8,18.1z M21.2,24.9L8,18.3l13.2-6.6l13.2,6.6L21.2,24.9z M36.4,33.1 l-13.2-6.6l13.2-6.6l13.2,6.6L36.4,33.1z"/>
+        </svg>
+        
+        <h1>¡Hola Mundo!</h1>
+        <div class="subtitle">Desplegado con Terraform</div>
+        
+        <div class="terraform-info">
+            <p>Esta página fue creada y desplegada usando Terraform, una herramienta de infraestructura como código que permite crear, cambiar y versionar infraestructura de forma segura y eficiente.</p>
+        </div>
+        
+        <div class="buttons">
+            <a href="https://www.terraform.io/" class="btn" target="_blank">Documentación</a>
+            <a href="#" class="btn btn-primary">Explorar Más</a>
+        </div>
+        
+        <div class="author">By Roxs</div>
+    </div>
+    
+    <script>
+        // Crear partículas en el fondo
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 10 + 5;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Posición aleatoria
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Duración de animación aleatoria
+            const duration = Math.random() * 20 + 10;
+            particle.style.animation = `float ${duration}s infinite linear`;
+            
+            // Retraso aleatorio
+            const delay = Math.random() * 10;
+            particle.style.animationDelay = `-${delay}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
